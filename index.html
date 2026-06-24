@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy 18th Ney Vindri! 🐰💗</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@300..700&family=Pacifico&display=swap');
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: #ffeef2;
+            background-image: 
+                radial-gradient(#ffb6c1 11%, transparent 11%),
+                linear-gradient(to right, rgba(255, 182, 193, 0.15) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(255, 182, 193, 0.15) 1px, transparent 1px);
+            background-size: 20px 20px, 40px 40px, 40px 40px;
+            font-family: 'Fredoka', sans-serif;
+            color: #ff6584;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            overflow: hidden;
+            padding: 20px;
+        }
+
+        /* Container Utama dengan Efek Transisi */
+        .card-container {
+            background: rgba(255, 255, 255, 0.95);
+            border: 4px solid #ffa3b1;
+            border-radius: 30px;
+            padding: 40px 30px;
+            text-align: center;
+            max-width: 450px;
+            width: 100%;
+            box-shadow: 0 15px 35px rgba(255, 101, 132, 0.25);
+            position: relative;
+            transition: all 0.5s ease-in-out;
+            transform: scale(1);
+        }
+
+        /* Pita Atas */
+        .ribbon {
+            position: absolute;
+            top: -20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #ff6584;
+            color: white;
+            padding: 8px 25px;
+            border-radius: 20px;
+            font-weight: bold;
+            font-size: 1rem;
+            box-shadow: 0 5px 10px rgba(0,0,0,0.1);
+            z-index: 10;
+        }
+
+        /* Karakter Kelinci / Melody Interaktif */
+        .bunny-avatar {
+            width: 130px;
+            height: 130px;
+            background: #fff0f3;
+            border: 4px solid #ffa3b1;
+            border-radius: 50%;
+            margin: 20px auto;
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 4rem;
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+
+        .bunny-avatar:hover {
+            transform: scale(1.1) rotate(5deg);
+        }
+
+        /* Telinga Kelinci */
+        .bunny-avatar::before, .bunny-avatar::after {
+            content: '🐰';
+            position: absolute;
+            font-size: 2.8rem;
+            top: -32px;
+        }
+        .bunny-avatar::before { left: 5px; transform: rotate(-15deg); }
+        .bunny-avatar::after { right: 5px; transform: rotate(15deg); }
+
+        /* Judul Teks */
+        h1 {
+            font-family: 'Pacifico', cursive;
+            font-size: 2.3rem;
+            color: #ff477e;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 0px #ffe3e8;
+        }
+
+        /* Langkah/Step Interaktif */
+        .step-content {
+            display: none;
+            animation: fadeIn 0.5s ease-in-out forwards;
+        }
+
+        .step-content.active {
+            display: block;
+        }
+
+        /* Kotak Pesan Rahasia */
+        .wishes-box {
+            font-size: 1.05rem;
+            line-height: 1.6;
+            color: #555;
+            background: #fff5f7;
+            padding: 20px;
+            border-radius: 20px;
+            border: 2px dashed #ff85a1;
+            margin: 20px 0;
+            text-align: center;
+            transform: rotate(-1deg);
+        }
+
+        /* Tombol Lucu */
+        .btn-cute {
+            background: #ff6584;
+            color: white;
+            border: none;
+            padding: 12px 28px;
+            font-family: 'Fredoka', sans-serif;
+            font-size: 1.1rem;
+            font-weight: bold;
+            border-radius: 25px;
+            cursor: pointer;
+            box-shadow: 0 5px 0px #d64161;
+            transition: all 0.2s ease;
+            margin-top: 15px;
+        }
+
+        .btn-cute:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 7px 0px #d64161;
+            background: #ff477e;
+        }
+
+        .btn-cute:active {
+            transform: translateY(3px);
+            box-shadow: 0 2px 0px #d64161;
+        }
+
+        /* Efek Hujan Balon & Confetti */
+        .particle {
+            position: fixed;
+            bottom: -50px;
+            font-size: 2rem;
+            animation: floatUp 5s linear forwards;
+            z-index: 999;
+            pointer-events: none;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes floatUp {
+            0% { bottom: -50px; transform: translateX(0) rotate(0deg); opacity: 1; }
+            100% { bottom: 105vh; transform: translateX(100px) rotate(360deg); opacity: 0; }
+        }
+
+        /* Hint Text */
+        .hint {
+            font-size: 0.85rem;
+            color: #ffa3b1;
+            margin-top: 10px;
+            font-style: italic;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="card-container" id="mainCard">
+        <div class="ribbon">🎀 MELODY BIRTHDAY BOX 🎀</div>
+        
+        <!-- Avatar Kepala Kelinci Interaktif (Bisa Bersuara/Berubah saat diklik) -->
+        <div class="bunny-avatar" id="bunnyFace" onclick="bunnyGiggle()">
+            🎀
+        </div>
+
+        <!-- STEP 1: Pembukaan -->
+        <div class="step-content active" id="step1">
+            <h1>Halo Ney Vindri! 🌸</h1>
+            <p style="margin: 15px 0; color: #777;">Ada sebuah kotak paket misterius bertema My Melody buat kamu yang dikirim khusus hari ini...</p>
+            <button class="btn-cute" onclick="nextStep(2)">Buka Paketnya! 🎁</button>
+        </div>
+
+        <!-- STEP 2: Ketukan Interaktif -->
+        <div class="step-content" id="step2">
+            <h1>Ketuk Pintu Rumah Kelinci! 🚪</h1>
+            <p style="margin: 15px 0; color: #777;">Ketuk gambar pita kelinci di atas sebanyak <b style="color:#ff477e;">3 kali</b> untuk memanggil kejutan manisnya!</p>
+            <div id="clickCount" style="font-size: 1.3rem; font-weight: bold; color: #ff6584;">Ketukan: 0/3</div>
+            <p class="hint">(Klik boneka kelinci merah muda di atas ya!)</p>
+        </div>
+
+        <!-- STEP 3: Isi Surat Utama & Tombol Party -->
+        <div class="step-content" id="step3">
+            <div style="background: #ff85a1; color: white; display: inline-block; padding: 4px 15px; border-radius: 15px; font-size: 1.1rem; margin-bottom: 10px;">
+                🎉 SWEET 18th BIRTHDAY 🎉
+            </div>
+            <h1>(Ney) Vindri</h1>
+            
+            <div class="wishes-box">
+                "Selamat ulang tahun yang ke-18, Ney Vindri! 🧸✨ Semoga di usia yang makin dewasa ini, harimu selalu dipenuhi kebahagiaan ala Melody, impianmu tercapai, dan senyum manismu nggak pernah pudar! 🌸💗"
+            </div>
+
+            <button class="btn-cute" onclick="startParty()">Meriahkan Pesta! 🎈🎉</button>
+            <p class="hint">Klik berkali-kali untuk hujan balon yang banyak!</p>
+        </div>
+    </div>
+
+    <!-- AUDIO BACKSOUND (Ganti URL dengan lagu pilihanmu jika ada) -->
+    <audio id="bgMusic" loop src="https://assets.mixkit.co/active_storage/sfx/2017/2017-84.wav"></audio>
+
+    <script>
+        let currentStep = 1;
+        let bunnyClicks = 0;
+
+        function nextStep(step) {
+            // Sembunyikan step sekarang
+            document.getElementById(`step${currentStep}`).classList.remove('active');
+            // Tampilkan step berikutnya
+            document.getElementById(`step${step}`).classList.add('active');
+            currentStep = step;
+        }
+
+        // Efek Interaktif Ketukan Kelinci pada Step 2
+        function bunnyGiggle() {
+            const face = document.getElementById('bunnyFace');
+            face.innerText = '✨';
+            setTimeout(() => face.innerText = '🎀', 300);
+
+            if (currentStep === 2) {
+                bunnyClicks++;
+                document.getElementById('clickCount').innerText = `Ketukan: ${bunnyClicks}/3`;
+                
+                // Efek getar kartu saat diketuk
+                const card = document.getElementById('mainCard');
+                card.style.transform = 'scale(0.98)';
+                setTimeout(() => card.style.transform = 'scale(1)', 100);
+
+                if (bunnyClicks >= 3) {
+                    setTimeout(() => {
+                        nextStep(3);
+                        startParty(); // Otomatis rayakan saat terbuka
+                    }, 500);
+                }
+            }
+        }
+
+        // Efek Interaktif Hujan Balon, Boneka, & Confetti Cerah
+        function startParty() {
+            const items = ['🎈', '🌸', '🐰', '💖', '🎂', '✨', '🧸', '🎀', '🍬'];
+            
+            // Coba putar sound effect klik singkat
+            const music = document.getElementById('bgMusic');
+            music.play().catch(() => {}); 
+
+            for (let i = 0; i < 30; i++) {
+                setTimeout(() => {
+                    const particle = document.createElement('div');
+                    particle.classList.add('particle');
+                    
+                    particle.innerText = items[Math.floor(Math.random() * items.length)];
+                    particle.style.left = Math.random() * 100 + 'vw';
+                    // Variasi kecepatan & ukuran objek agar tampak natural
+                    particle.style.animationDuration = (Math.random() * 2 + 3) + 's';
+                    particle.style.fontSize = (Math.random() * 25 + 20) + 'px';
+                    
+                    document.body.appendChild(particle);
+
+                    // Hapus elemen setelah terbang ke atas agar browser enteng
+                    setTimeout(() => {
+                        particle.remove();
+                    }, 5000);
+                }, i * 100);
+            }
+        }
+    </script>
+</body>
+</html>
